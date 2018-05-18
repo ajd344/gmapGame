@@ -3,70 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class playerMovement : MonoBehaviour {
-
-    public int playerMoveSpeed = 10;
-    public bool facingRight = true;
-    public int playerJumpPower = 50;
-    public float moveX;
-    Rigidbody2D rb;
-
+    private CharacterController controller;
+    private Vector3 moveVector;
+    private Vector3 lastMotion;
+    private float jumpSpeed;
+    private float speed;
+    public float gravity = 20.0F;
+    private Vector3 moveDirection = Vector3.zero;
+    public float pushPower = 2.0F;
+    private Rigidbody2D rgd;
+    // Use this for initialization
+    void Start () {
+        controller = GetComponent<CharacterController>();
+        
+    }
+	
 	// Update is called once per frame
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        rb.freezeRotation = true;
-    }
 	void Update () {
-        playerMove();
-        
-	}
-    
-    
-    void playerMove()
-    {
-        //controls
-        moveX = Input.GetAxis("Horizontal");
-        if (Input.GetButtonDown("Jump"))
+        if (controller.isGrounded)
         {
-            Jump();
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection *= speed;
+            if (Input.GetButton("Jump"))
+                moveDirection.y = jumpSpeed;
+            if ((controller.collisionFlags & CollisionFlags.Above) != 0)
+                print("touched the ceiling");
         }
-        //animations
-        //playerDirections
-        if (moveX < 0.0f && facingRight == false)
-        {
-            flipPlayer();
-        }
-        else if (moveX > 0.0f && facingRight == true)
-        {
-            flipPlayer();
-        }
-        //physics
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * playerMoveSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
+        moveDirection.y -= gravity * Time.deltaTime;
+        controller.Move(moveDirection * Time.deltaTime);
     }
-    void Jump()
+    void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
-    }
-    void flipPlayer()
-    {
-        facingRight = !facingRight;
-        Vector2 localScale = gameObject.transform.localScale;
-        localScale.x *= -1;
-        transform.localScale = localScale;
-    }
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.transform.tag=="Platform")
-        {
-            transform.parent = other.transform;
-        }
-        
-    }
-    void OnCollisionExit2D(Collision2D other)
-    {
-        if(other.transform.tag == "Platform")
-        {
-            transform.parent = null;
-        }
+        Rigidbody body = hit.collider.attachedRigidbody;
+        if (body == null || body.isKinematic)
+            return;
+
+        if (hit.moveDirection.y < -0.3F)
+            return;
+
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+        body.velocity = pushDir * pushPower;
     }
 }
+    
+

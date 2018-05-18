@@ -20,6 +20,7 @@ public class curtainChangeScene : MonoBehaviour {
     {
         if (Colider.gameObject.tag == "Player")
         Application.LoadLevel(level);
+        
     }
     
 }
