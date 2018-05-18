@@ -65,10 +65,10 @@
      <None Include="Assets\platformerGraphicsDeluxe_Updated\Items\items_spritesheet.xml" />
      <None Include="Assets\platformerGraphicsDeluxe_Updated\Player\p1_spritesheet.txt" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>C:/Users/Ahri/Documents/2D Platformer Prototype/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>C:/Users/Ahri/Documents/gmapGame/2D Platformer Prototype/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>C:/Users/Ahri/Documents/2D Platformer Prototype/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>C:/Users/Ahri/Documents/gmapGame/2D Platformer Prototype/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
