@@ -10,8 +10,9 @@ public class playerMovement : MonoBehaviour
     public float moveVelocity = 10;
     public bool facingRight = true;
     public float moveX;
-  
+
     //Wall jumping params
+    string previousWallName = "";
     bool wallJumpAllowed;
     public float wallJumpForce;
     public float jumpDirection;
@@ -20,16 +21,16 @@ public class playerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
-        
+
     }
     void FixedUpdate()
     {
-        
+
     }
     void Update()
     {
         playerMove();
-        if(wallJumpAllowed && Input.GetButtonDown("Jump"))
+        if (wallJumpAllowed && Input.GetButtonDown("Jump"))
         {
             wallJump();
         }
@@ -40,7 +41,7 @@ public class playerMovement : MonoBehaviour
     {
         //controls
         moveX = Input.GetAxis("Horizontal");
-        
+
         //animations
         //playerDirections
         if (moveX < 0.0f && facingRight == false)
@@ -55,12 +56,11 @@ public class playerMovement : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * moveVelocity, gameObject.GetComponent<Rigidbody2D>().velocity.y);
 
     }
-    
+
     void wallJump()
     {
-       GetComponent<Rigidbody2D>().AddForce(Vector2.up * wallJumpForce);
-       
-
+        GetComponent<Rigidbody2D>().AddForce(Vector2.up * wallJumpForce);
+        wallJumpAllowed = false;
     }
     void flipPlayer()
     {
@@ -77,7 +77,11 @@ public class playerMovement : MonoBehaviour
         }
         if (col.gameObject.tag == ("Wall"))
         {
-            wallJumpAllowed = true;
+            if (!previousWallName.Equals(col.gameObject.name))
+            {
+                wallJumpAllowed = true;
+            }
+            previousWallName = col.gameObject.name;
         }
 
     }
@@ -90,6 +94,6 @@ public class playerMovement : MonoBehaviour
         if (col.gameObject.tag == ("Wall"))
             wallJumpAllowed = false;
     }
-    
-   
+
+
 }
