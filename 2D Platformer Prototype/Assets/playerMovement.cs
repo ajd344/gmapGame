@@ -11,10 +11,14 @@ public class playerMovement : MonoBehaviour
     public bool facingRight = true;
     public float moveX;
 
+    //Ground Check
+    public LayerMask groundLayer;
+
     //Wall jumping params
     string previousWallName = "";
-    bool wallJumpAllowed;
-    public float wallJumpForce;
+    public bool wallJumpAllowed;
+    public float wallJumpY;
+    public float wallJumpX;
     public float jumpDirection;
     // Update is called once per frame
     void Start()
@@ -34,6 +38,7 @@ public class playerMovement : MonoBehaviour
         {
             wallJump();
         }
+        
     }
 
 
@@ -59,7 +64,15 @@ public class playerMovement : MonoBehaviour
 
     void wallJump()
     {
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up * wallJumpForce);
+        if (facingRight)
+        {
+            rb.AddForce(new Vector2(-wallJumpX, wallJumpY));
+        }
+        else if (!facingRight)
+        {
+            rb.AddForce(new Vector2(wallJumpX, wallJumpY));
+        }
+
         wallJumpAllowed = false;
     }
     void flipPlayer()
@@ -95,5 +108,18 @@ public class playerMovement : MonoBehaviour
             wallJumpAllowed = false;
     }
 
+    bool IsGrounded()
+    {
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+        float distance = .50f;
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
+        if (hit.collider != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
 
 }
