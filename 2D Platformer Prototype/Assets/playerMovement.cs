@@ -4,23 +4,35 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-
-    public int playerMoveSpeed = 10;
-    public bool facingRight = true;
-    public int playerJumpPower = 50;
-    public float moveX;
     Rigidbody2D rb;
-
+    //Basic movement/jump
+    [Range(1, 20)]
+    public float moveVelocity = 10;
+    public bool facingRight = true;
+    public float moveX;
+  
+    //Wall jumping params
+    bool wallJumpAllowed;
+    public float wallJumpForce;
+    public float jumpDirection;
     // Update is called once per frame
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
+        
+    }
+    void FixedUpdate()
+    {
+        
     }
     void Update()
     {
         playerMove();
-
+        if(wallJumpAllowed && Input.GetButtonDown("Jump"))
+        {
+            wallJump();
+        }
     }
 
 
@@ -28,10 +40,7 @@ public class playerMovement : MonoBehaviour
     {
         //controls
         moveX = Input.GetAxis("Horizontal");
-        if (Input.GetButtonDown("Jump"))
-        {
-            Jump();
-        }
+        
         //animations
         //playerDirections
         if (moveX < 0.0f && facingRight == false)
@@ -43,11 +52,15 @@ public class playerMovement : MonoBehaviour
             flipPlayer();
         }
         //physics
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * playerMoveSpeed, gameObject.GetComponent<Rigidbody2D>().velocity.y);
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * moveVelocity, gameObject.GetComponent<Rigidbody2D>().velocity.y);
+
     }
-    void Jump()
+    
+    void wallJump()
     {
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
+       GetComponent<Rigidbody2D>().AddForce(Vector2.up * wallJumpForce);
+       
+
     }
     void flipPlayer()
     {
@@ -56,19 +69,27 @@ public class playerMovement : MonoBehaviour
         localScale.x *= -1;
         transform.localScale = localScale;
     }
-    void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        if (other.transform.tag == "Platform")
+        if (col.transform.tag == "Platform")
         {
-            transform.parent = other.transform;
+            transform.parent = col.transform;
+        }
+        if (col.gameObject.tag == ("Wall"))
+        {
+            wallJumpAllowed = true;
         }
 
     }
-    void OnCollisionExit2D(Collision2D other)
+    void OnCollisionExit2D(Collision2D col)
     {
-        if (other.transform.tag == "Platform")
+        if (col.transform.tag == "Platform")
         {
             transform.parent = null;
         }
+        if (col.gameObject.tag == ("Wall"))
+            wallJumpAllowed = false;
     }
+    
+   
 }
