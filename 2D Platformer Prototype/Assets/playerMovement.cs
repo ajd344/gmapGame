@@ -96,6 +96,10 @@ public class playerMovement : MonoBehaviour
             }
             previousWallName = col.gameObject.name;
         }
+        else
+        {
+            previousWallName = "";
+        }
 
     }
     void OnCollisionExit2D(Collision2D col)
