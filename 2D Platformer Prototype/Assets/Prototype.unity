@@ -346,11 +346,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1615581950557048, guid: ae0414905f4959740bd7ff139d514e89, type: 2}
       propertyPath: m_Name
-      value: exampleWall (1)
+      value: Wall2
       objectReference: {fileID: 0}
     - target: {fileID: 4106813347863372, guid: ae0414905f4959740bd7ff139d514e89, type: 2}
       propertyPath: m_LocalScale.x
       value: 0.3064144
+      objectReference: {fileID: 0}
+    - target: {fileID: 251025176276582026, guid: ae0414905f4959740bd7ff139d514e89,
+        type: 2}
+      propertyPath: m_UseSideFriction
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae0414905f4959740bd7ff139d514e89, type: 2}
@@ -961,6 +966,10 @@ Prefab:
     - target: {fileID: 4106813347863372, guid: ae0414905f4959740bd7ff139d514e89, type: 2}
       propertyPath: m_LocalScale.y
       value: 9.303691
+      objectReference: {fileID: 0}
+    - target: {fileID: 1615581950557048, guid: ae0414905f4959740bd7ff139d514e89, type: 2}
+      propertyPath: m_Name
+      value: Wall1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae0414905f4959740bd7ff139d514e89, type: 2}
