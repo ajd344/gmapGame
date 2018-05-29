@@ -32,9 +32,11 @@ public class Jump : MonoBehaviour {
 
     bool IsGrounded()
     {
+
         Vector2 position = transform.position;
         Vector2 direction = Vector2.down;
         float distance = .50f;
+
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
         if (hit.collider != null)
         {
