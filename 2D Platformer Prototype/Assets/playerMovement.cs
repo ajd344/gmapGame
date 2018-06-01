@@ -23,6 +23,8 @@ public class playerMovement : MonoBehaviour
     public float wallJumpY;
     public float wallJumpX;
     public float jumpDirection;
+    public LayerMask wallLayer;
+    
     
     // Update is called once per frame
     void Start()
@@ -43,7 +45,7 @@ public class playerMovement : MonoBehaviour
         //{
         //    playerJump();
         //}
-        if (wallJumpAllowed && Input.GetButtonDown("Jump"))
+        if ((IsWalledLeft() || IsWalledRight()) && Input.GetButtonDown("Jump"))
         {
             wallJump();
         }
@@ -100,6 +102,36 @@ public class playerMovement : MonoBehaviour
         Vector2 localScale = gameObject.transform.localScale;
         localScale.x *= -1;
         transform.localScale = localScale;
+    }
+    bool IsWalledRight()
+    {
+
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.right;
+        float distance = .50f;
+
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, wallLayer);
+        if (hit.collider != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    bool IsWalledLeft()
+    {
+
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.left;
+        float distance = .50f;
+
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, wallLayer);
+        if (hit.collider != null)
+        {
+            return true;
+        }
+
+        return false;
     }
     void OnCollisionEnter2D(Collision2D col)
     {
