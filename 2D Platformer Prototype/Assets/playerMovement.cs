@@ -45,7 +45,7 @@ public class playerMovement : MonoBehaviour
         //{
         //    playerJump();
         //}
-        if ((IsWalledLeft() || IsWalledRight() || wallJumpAllowed) && Input.GetButtonDown("Jump"))
+        if ((IsWalledLeft() || IsWalledRight()) && wallJumpAllowed && Input.GetButtonDown("Jump"))
         {
             wallJump();
         }
@@ -108,7 +108,7 @@ public class playerMovement : MonoBehaviour
 
         Vector2 position = transform.position;
         Vector2 direction = Vector2.right;
-        float distance = .50f;
+        float distance = .78f;
 
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, wallLayer);
         if (hit.collider != null)
@@ -123,7 +123,7 @@ public class playerMovement : MonoBehaviour
 
         Vector2 position = transform.position;
         Vector2 direction = Vector2.left;
-        float distance = .50f;
+        float distance = .78f;
 
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, wallLayer);
         if (hit.collider != null)
