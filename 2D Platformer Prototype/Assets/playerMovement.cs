@@ -45,7 +45,7 @@ public class playerMovement : MonoBehaviour
         //{
         //    playerJump();
         //}
-        if ((IsWalledLeft() || IsWalledRight()) && Input.GetButtonDown("Jump"))
+        if ((IsWalledLeft() || IsWalledRight() || wallJumpAllowed) && Input.GetButtonDown("Jump"))
         {
             wallJump();
         }
@@ -133,6 +133,7 @@ public class playerMovement : MonoBehaviour
 
         return false;
     }
+    
     void OnCollisionEnter2D(Collision2D col)
     {
         //Makes Player a child of platform to move along with platform
