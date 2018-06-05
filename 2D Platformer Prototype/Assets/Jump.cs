@@ -8,14 +8,15 @@ public class Jump : MonoBehaviour {
     public float jumpVelocity;
     //Ground check param
     public LayerMask groundLayer;
-
+    public LayerMask wallLayer;
     
     void FixedUpdate()
     {
         if (Input.GetButton("Jump"))
         {
-                playerJump();       
+            playerJump();       
         }
+        
     }
 
     void playerJump()
@@ -32,9 +33,11 @@ public class Jump : MonoBehaviour {
 
     bool IsGrounded()
     {
+
         Vector2 position = transform.position;
         Vector2 direction = Vector2.down;
-        float distance = .50f;
+        float distance = 1.70f;
+
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
         if (hit.collider != null)
         {
@@ -43,4 +46,5 @@ public class Jump : MonoBehaviour {
 
         return false;
     }
+    
 }

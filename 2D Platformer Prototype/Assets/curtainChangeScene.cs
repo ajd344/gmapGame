@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class curtainChangeScene : MonoBehaviour {
 
-    public string level = "PrototypeBackStage";
+    public string level;
     Rigidbody2D rb;
     void Start()
     {

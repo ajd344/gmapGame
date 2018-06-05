@@ -10,9 +10,12 @@ public class playerMovement : MonoBehaviour
     public float moveVelocity = 10;
     public bool facingRight = true;
     public float moveX;
+    [Range(1, 20)]
+    public float jumpVelocity;
 
     //Ground Check
     public LayerMask groundLayer;
+    public bool isGrounded;
 
     //Wall jumping params
     string previousWallName = "";
@@ -20,6 +23,9 @@ public class playerMovement : MonoBehaviour
     public float wallJumpY;
     public float wallJumpX;
     public float jumpDirection;
+    public LayerMask wallLayer;
+    
+    
     // Update is called once per frame
     void Start()
     {
@@ -29,16 +35,21 @@ public class playerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-
+        
     }
     void Update()
     {
         playerMove();
-        if (wallJumpAllowed && Input.GetButtonDown("Jump"))
+
+        //if (Input.GetButton("Jump"))
+        //{
+        //    playerJump();
+        //}
+        if ((IsWalledLeft() || IsWalledRight()) && wallJumpAllowed && Input.GetButtonDown("Jump"))
         {
             wallJump();
         }
-        
+
     }
 
 
@@ -61,7 +72,17 @@ public class playerMovement : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * moveVelocity, gameObject.GetComponent<Rigidbody2D>().velocity.y);
 
     }
-
+    //void playerJump()
+    //{
+    //    if (!isGrounded)
+    //    {
+    //        return;
+    //    }
+    //    else
+    //    {
+    //        GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
+    //    }
+    //}
     void wallJump()
     {
         if (facingRight)
@@ -82,12 +103,46 @@ public class playerMovement : MonoBehaviour
         localScale.x *= -1;
         transform.localScale = localScale;
     }
+    bool IsWalledRight()
+    {
+
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.right;
+        float distance = .78f;
+
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, wallLayer);
+        if (hit.collider != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    bool IsWalledLeft()
+    {
+
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.left;
+        float distance = .78f;
+
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, wallLayer);
+        if (hit.collider != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.transform.tag == "Platform")
+        //Makes Player a child of platform to move along with platform
+        if (col.transform.tag == "movingPlatform")
         {
             transform.parent = col.transform;
+            isGrounded = true;
         }
+        //Checks for available wall
         if (col.gameObject.tag == ("Wall"))
         {
             if (!previousWallName.Equals(col.gameObject.name))
@@ -100,30 +155,36 @@ public class playerMovement : MonoBehaviour
         {
             previousWallName = "";
         }
+        if (col.transform.tag == "Teleporter")
+        {
+            transform.position = col.transform.GetChild(0).position;
+        }
 
     }
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+    }
+
     void OnCollisionExit2D(Collision2D col)
     {
-        if (col.transform.tag == "Platform")
+        //Makes Player not a child of the moving platform
+        if (col.transform.tag == "movingPlatform")
         {
             transform.parent = null;
+            isGrounded = false; 
         }
         if (col.gameObject.tag == ("Wall"))
-            wallJumpAllowed = false;
-    }
-
-    bool IsGrounded()
-    {
-        Vector2 position = transform.position;
-        Vector2 direction = Vector2.down;
-        float distance = .50f;
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
-        if (hit.collider != null)
         {
-            return true;
+            wallJumpAllowed = false;
         }
+        
 
-        return false;
+
+
+
     }
-
 }
