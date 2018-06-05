@@ -60,6 +60,7 @@
      <Compile Include="Assets\Jump.cs" />
      <Compile Include="Assets\movement3d.cs" />
      <Compile Include="Assets\movingPlatform.cs" />
+     <Compile Include="Assets\Parallaxing.cs" />
      <Compile Include="Assets\playerMovement.cs" />
      <Compile Include="Assets\reworked3DMovement.cs" />
      <None Include="Assets\platformerGraphicsDeluxe_Updated\Enemies\enemies_spritesheet.txt" />
@@ -67,9 +68,11 @@
      <None Include="Assets\platformerGraphicsDeluxe_Updated\license.txt" />
      <None Include="Assets\platformerGraphicsDeluxe_Updated\Player\p2_spritesheet.txt" />
      <None Include="Assets\platformerGraphicsDeluxe_Updated\HUD\hud_spritesheet.xml" />
+     <None Include="Assets\kenney_backgroundElements\Spritesheet\bgElements_spritesheet.xml" />
      <None Include="Assets\platformerGraphicsDeluxe_Updated\Player\p3_spritesheet.txt" />
      <None Include="Assets\platformerGraphicsDeluxe_Updated\Items\items_spritesheet.xml" />
      <None Include="Assets\platformerGraphicsDeluxe_Updated\Player\p1_spritesheet.txt" />
+     <None Include="Assets\kenney_backgroundElements\License.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Ahri/Documents/gmapGame/2D Platformer Prototype/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

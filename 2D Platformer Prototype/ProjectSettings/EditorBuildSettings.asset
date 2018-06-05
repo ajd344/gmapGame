@@ -8,10 +8,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Prototype.unity
     guid: d661940e8afb7944da77ff83774d4ca2
   - enabled: 0
-    path: Assets/PrototypeBackStage.unity
-    guid: a7b378cb5007e9d42851832cd6af281a
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/MainMenu.unity
+    guid: 6d522423737d5f945b761a1092921ec8
+  - enabled: 1
+    path: Assets/LevelSelect.unity
+    guid: f234eef956f164745adbbadf463341d3
+  - enabled: 1
+    path: Assets/NicksLevel.unity
+    guid: 2c6aa6fc2dade0747a00dc3e122450b5
   m_configObjects: {}

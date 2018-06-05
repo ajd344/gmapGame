@@ -9,6 +9,7 @@ TagManager:
   - movingPlatform
   - Ground
   - Teleporter
+  - cameraFocus
   layers:
   - Default
   - TransparentFX
