@@ -56,7 +56,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1.15
+  m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0.1
   m_GravityScale: 2
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c2ff2296d96ba4fbcc3dc1c2a7a0b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpVelocity: 10
+  jumpVelocity: 9
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -134,13 +134,13 @@ MonoBehaviour:
   moveVelocity: 10
   facingRight: 0
   moveX: 0
-  jumpVelocity: 4
+  jumpVelocity: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
   isGrounded: 0
   wallJumpAllowed: 0
-  wallJumpY: 850
+  wallJumpY: 725
   wallJumpX: 1500
   jumpDirection: 0
   wallLayer:

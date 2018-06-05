@@ -27,7 +27,7 @@ public class deathChecker : MonoBehaviour
     }
     IEnumerator Die()
     {
-        SceneManager.LoadScene("LevelSelect");
+        SceneManager.LoadScene("Prototype");
         yield return null;
     }
 }
