@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class deathChecker : MonoBehaviour
 {
     public bool hasDied;
-
+    public string levelName;
     // Use this for initialization
     void Start()
     {
@@ -27,7 +27,7 @@ public class deathChecker : MonoBehaviour
     }
     IEnumerator Die()
     {
-        SceneManager.LoadScene("Prototype");
+        SceneManager.LoadScene(levelName);
         yield return null;
     }
 }
