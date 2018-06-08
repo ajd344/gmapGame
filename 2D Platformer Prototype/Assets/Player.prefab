@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasDied: 0
-  levelName: NicksLevel
+  levelName: 
 --- !u!114 &114903846589469216
 MonoBehaviour:
   m_ObjectHideFlags: 1

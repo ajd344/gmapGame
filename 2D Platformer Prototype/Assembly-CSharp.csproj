@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\betterJump.cs" />
+     <Compile Include="Assets\ButtonManager.cs" />
      <Compile Include="Assets\cameraController.cs" />
      <Compile Include="Assets\Cat.cs" />
      <Compile Include="Assets\curtainChangeScene.cs" />

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Tyler's Level.unity
+- path: Assets/NicksLevel.unity
   isLoaded: 1
   isActive: 1
