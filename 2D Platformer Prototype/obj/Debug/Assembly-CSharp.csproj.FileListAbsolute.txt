@@ -325,3 +325,7 @@ C:\Users\Andrew\Documents\School\GMAP\gmapGame\2D Platformer Prototype\Temp\bin\
 C:\Users\Andrew\Documents\School\GMAP\gmapGame\2D Platformer Prototype\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\Andrew\Documents\School\GMAP\gmapGame\2D Platformer Prototype\obj\Debug\Assembly-CSharp.dll
 C:\Users\Andrew\Documents\School\GMAP\gmapGame\2D Platformer Prototype\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Momo\Desktop\2D Platformer Prototype\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\Momo\Desktop\2D Platformer Prototype\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\Momo\Desktop\2D Platformer Prototype\obj\Debug\Assembly-CSharp.dll
+C:\Users\Momo\Desktop\2D Platformer Prototype\obj\Debug\Assembly-CSharp.pdb

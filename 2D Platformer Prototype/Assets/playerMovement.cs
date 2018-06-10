@@ -24,13 +24,17 @@ public class playerMovement : MonoBehaviour
     public float wallJumpX;
     public float jumpDirection;
     public LayerMask wallLayer;
-    
-    
+
+    //SpriteAnimations
+    Animator anim;
+
+
     // Update is called once per frame
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
+        anim = GetComponent<Animator>();
 
     }
     void FixedUpdate()
@@ -67,11 +71,70 @@ public class playerMovement : MonoBehaviour
         else if (moveX > 0.0f && facingRight == true)
         {
             flipPlayer();
+
+        //Animation Triggers
+        //LeftHorizontal
         }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            anim.SetInteger("State", 1);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            anim.SetInteger("State", 2);
+        }
+        //RightHorizontal
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            anim.SetInteger("State", 1);
+        }
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            anim.SetInteger("State", 2);
+        }
+        //Jump
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetInteger("State", 5);
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            anim.SetInteger("State", 6);
+        }
+        
+        //HorizontalJump
+        if (Input.GetKeyDown(KeyCode.Space) && Input.GetKeyDown(KeyCode.RightArrow) && IsGrounded())
+ 
+        {
+            anim.SetInteger("State", 5);
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            anim.SetInteger("State", 6);
+        }
+
+        //Crouch
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+
+        {
+            anim.SetInteger("State", 3);
+        }
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            anim.SetInteger("State", 4);
+        }
+
+        //WallJump
+        if (wallJumpAllowed)
+        {
+            anim.SetInteger("State", 13);
+        }
+
         //physics
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * moveVelocity, gameObject.GetComponent<Rigidbody2D>().velocity.y);
 
     }
+
     //void playerJump()
     //{
     //    if (!isGrounded)
@@ -186,5 +249,20 @@ public class playerMovement : MonoBehaviour
 
 
 
+    }
+    bool IsGrounded()
+    {
+
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+        float distance = .95f;
+
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
+        if (hit.collider != null)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
