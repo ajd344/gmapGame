@@ -124,11 +124,7 @@ public class playerMovement : MonoBehaviour
             anim.SetInteger("State", 4);
         }
 
-        //WallJump
-        if (wallJumpAllowed)
-        {
-            anim.SetInteger("State", 13);
-        }
+       
 
         //physics
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * moveVelocity, gameObject.GetComponent<Rigidbody2D>().velocity.y);
