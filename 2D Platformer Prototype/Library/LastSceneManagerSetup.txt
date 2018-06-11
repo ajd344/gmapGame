@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/NicksLevel.unity
+- path: Assets/TedsLevel.unity
   isLoaded: 1
   isActive: 1

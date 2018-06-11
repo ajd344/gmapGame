@@ -51,19 +51,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\betterJump.cs" />
      <Compile Include="Assets\ButtonManager.cs" />
      <Compile Include="Assets\cameraController.cs" />
-     <Compile Include="Assets\Cat.cs" />
      <Compile Include="Assets\curtainChangeScene.cs" />
      <Compile Include="Assets\deathChecker.cs" />
-     <Compile Include="Assets\groundCheck.cs" />
      <Compile Include="Assets\Jump.cs" />
-     <Compile Include="Assets\movement3d.cs" />
      <Compile Include="Assets\movingPlatform.cs" />
      <Compile Include="Assets\Parallaxing.cs" />
      <Compile Include="Assets\playerMovement.cs" />
-     <Compile Include="Assets\reworked3DMovement.cs" />
      <None Include="Assets\platformerGraphicsDeluxe_Updated\Enemies\enemies_spritesheet.txt" />
      <None Include="Assets\platformerGraphicsDeluxe_Updated\Tiles\tiles_spritesheet.xml" />
      <None Include="Assets\platformerGraphicsDeluxe_Updated\license.txt" />
